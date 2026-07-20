@@ -6,6 +6,7 @@
   "publisher": "noritaka1166",
   "author": "noritaka1166",
   "license": "SEE LICENSE IN LICENSE",
+  "icon": "assets/path-copy-icon.png",
   "keywords": [
     "path",
     "copy path",
@@ -31,6 +32,7 @@
   ],
   "files": [
     "src/**",
+    "assets/**",
     "README*.md",
     "CHANGELOG.md",
     "LICENSE",
