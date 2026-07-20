@@ -134,7 +134,7 @@ function abbreviate(value, limit = 96) {
 function resolveResource(args) {
   const uri = args.find((arg) => arg instanceof vscode.Uri);
   const resource = uri || vscode.window.activeTextEditor?.document.uri;
-  if (!resource || resource.scheme !== 'file') {
+  if (resource?.scheme !== 'file') {
     throw new Error(t('Select a local file or folder first.'));
   }
   return resource;
@@ -165,7 +165,11 @@ async function findRepositoryUrl(root) {
 
 async function workingDirectoryFor(resource) {
   const stat = await vscode.workspace.fs.stat(resource);
-  return (stat.type & vscode.FileType.Directory) !== 0
+  const directoryTypes = [
+    vscode.FileType.Directory,
+    vscode.FileType.Directory + vscode.FileType.SymbolicLink
+  ];
+  return directoryTypes.includes(stat.type)
     ? resource.fsPath
     : path.dirname(resource.fsPath);
 }
@@ -184,6 +188,4 @@ async function copy(label, value) {
   vscode.window.setStatusBarMessage(t('Path Copy: {0} copied', label), 2500);
 }
 
-function deactivate() {}
-
-module.exports = { activate, deactivate };
+module.exports = { activate };
