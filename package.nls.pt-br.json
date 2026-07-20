@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "Copia caminhos de arquivos e URLs de repositórios Git do Explorador e das abas do editor.",
+  "description": "Copia caminhos absolutos, do espaço de trabalho e de repositórios Git, ou URLs de repositórios, do Explorador e das abas do editor.",
   "command.showCopyPicker": "Copiar caminho ou URL do repositório…",
   "command.copyAbsolutePath": "Copiar caminho absoluto",
   "command.copyFileName": "Copiar nome do arquivo",

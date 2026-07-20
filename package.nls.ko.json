@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "탐색기와 편집기 탭에서 파일 경로와 Git 리포지토리 URL을 복사합니다.",
+  "description": "탐색기와 편집기 탭에서 절대 경로, 작업 영역 및 Git 리포지토리 경로 또는 리포지토리 URL을 복사합니다.",
   "command.showCopyPicker": "경로 또는 리포지토리 URL 복사…",
   "command.copyAbsolutePath": "절대 경로 복사",
   "command.copyFileName": "파일 이름 복사",

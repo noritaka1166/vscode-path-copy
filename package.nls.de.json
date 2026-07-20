@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "Kopiert Dateipfade und Git-Repository-URLs aus Explorer und Editor-Tabs.",
+  "description": "Kopiert absolute Pfade, Arbeitsbereichs- und Git-Repository-Pfade oder Repository-URLs aus Explorer und Editor-Tabs.",
   "command.showCopyPicker": "Pfad oder Repository-URL kopieren…",
   "command.copyAbsolutePath": "Absoluten Pfad kopieren",
   "command.copyFileName": "Dateinamen kopieren",

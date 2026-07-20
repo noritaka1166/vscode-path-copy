@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "从资源管理器和编辑器标签页复制文件路径与 Git 仓库 URL。",
+  "description": "从资源管理器和编辑器标签页复制绝对路径、工作区路径、Git 仓库路径或仓库 URL。",
   "command.showCopyPicker": "复制路径或仓库 URL…",
   "command.copyAbsolutePath": "复制绝对路径",
   "command.copyFileName": "复制文件名",

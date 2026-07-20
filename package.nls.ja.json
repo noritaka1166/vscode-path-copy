@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "エクスプローラーとエディタータブから、ファイルパスと Git リポジトリ URL をコピーします。",
+  "description": "エクスプローラーとエディタータブから、絶対・ワークスペース・Git リポジトリのパスやリポジトリ URL をコピーします。",
   "command.showCopyPicker": "パスまたはリポジトリ URL をコピー…",
   "command.copyAbsolutePath": "絶対パスをコピー",
   "command.copyFileName": "ファイル名をコピー",

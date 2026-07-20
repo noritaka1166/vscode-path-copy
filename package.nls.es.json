@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "Copia rutas de archivos y URL de repositorios Git desde el Explorador y las pestañas del editor.",
+  "description": "Copia rutas absolutas, del área de trabajo y de repositorios Git, o URL de repositorios, desde el Explorador y las pestañas del editor.",
   "command.showCopyPicker": "Copiar ruta o URL del repositorio…",
   "command.copyAbsolutePath": "Copiar ruta absoluta",
   "command.copyFileName": "Copiar nombre de archivo",

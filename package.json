@@ -11,9 +11,18 @@
     "path",
     "copy path",
     "file path",
+    "absolute path",
+    "relative path",
+    "workspace path",
+    "repository path",
     "repository url",
-    "git",
-    "intellij"
+    "git url",
+    "copy reference",
+    "clipboard",
+    "explorer",
+    "editor tabs",
+    "intellij",
+    "jetbrains"
   ],
   "galleryBanner": {
     "color": "#1E1E1E",
@@ -27,6 +36,9 @@
     "url": "https://github.com/noritaka1166/vscode-path-copy/issues"
   },
   "homepage": "https://github.com/noritaka1166/vscode-path-copy#readme",
+  "pricing": "Free",
+  "qna": "https://github.com/noritaka1166/vscode-path-copy/issues",
+  "markdown": "github",
   "extensionKind": [
     "workspace"
   ],

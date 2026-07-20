@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "Copy file paths and Git repository URLs from Explorer and editor tabs.",
+  "description": "Copy absolute, workspace, and Git repository paths or repository URLs from Explorer and editor tabs.",
   "command.showCopyPicker": "Copy Path or Repository URL…",
   "command.copyAbsolutePath": "Copy Absolute Path",
   "command.copyFileName": "Copy File Name",

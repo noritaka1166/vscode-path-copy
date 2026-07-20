@@ -1,6 +1,6 @@
 {
   "displayName": "Path Copy",
-  "description": "Copie les chemins de fichiers et les URL de dépôts Git depuis l’Explorateur et les onglets de l’éditeur.",
+  "description": "Copie les chemins absolus, d’espace de travail et de dépôts Git, ou les URL de dépôts, depuis l’Explorateur et les onglets de l’éditeur.",
   "command.showCopyPicker": "Copier le chemin ou l’URL du dépôt…",
   "command.copyAbsolutePath": "Copier le chemin absolu",
   "command.copyFileName": "Copier le nom du fichier",
