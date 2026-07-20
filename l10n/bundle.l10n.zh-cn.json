@@ -1,0 +1,15 @@
+{
+  "Copy": "复制",
+  "Select a value to copy": "选择要复制的值",
+  "Absolute Path": "绝对路径",
+  "File Name": "文件名",
+  "Path": "路径",
+  "Path Relative to Content Root": "相对于内容根目录的路径",
+  "Path Relative to Repository Root": "相对于仓库根目录的路径",
+  "Repository": "仓库",
+  "Repository URL": "仓库 URL",
+  "Path Copy: {0} copied": "Path Copy：已复制 {0}",
+  "Select a local file or folder first.": "请先选择本地文件或文件夹。",
+  "The selected file does not belong to an open workspace folder.": "所选文件不属于已打开的工作区文件夹。",
+  "No Git repository was found for the selected item.": "未找到所选项目的 Git 仓库。"
+}

@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "エクスプローラーとエディタータブから、ファイルパスと Git リポジトリ URL をコピーします。",
+  "command.showCopyPicker": "パスまたはリポジトリ URL をコピー…",
+  "command.copyAbsolutePath": "絶対パスをコピー",
+  "command.copyFileName": "ファイル名をコピー",
+  "command.copyWorkspaceRelativePath": "ワークスペースフォルダーからの相対パスをコピー",
+  "command.copyRepositoryRelativePath": "リポジトリルートからの相対パスをコピー",
+  "command.copyRepositoryUrl": "リポジトリ URL をコピー",
+  "configuration.remoteUrlFormat.markdownDescription": "**リポジトリ URL をコピー**で使う形式です。`https` は一般的な SSH リモートをブラウザー向けの HTTPS URL に変換し、`preserve` は Git に設定された URL をそのままコピーします。",
+  "configuration.remoteName.description": "リポジトリ URL のコピーに使用する Git リモート名です。"
+}

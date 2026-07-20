@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "Kopiert Dateipfade und Git-Repository-URLs aus Explorer und Editor-Tabs.",
+  "command.showCopyPicker": "Pfad oder Repository-URL kopieren…",
+  "command.copyAbsolutePath": "Absoluten Pfad kopieren",
+  "command.copyFileName": "Dateinamen kopieren",
+  "command.copyWorkspaceRelativePath": "Pfad relativ zum Arbeitsbereichsordner kopieren",
+  "command.copyRepositoryRelativePath": "Pfad relativ zum Repository-Stamm kopieren",
+  "command.copyRepositoryUrl": "Repository-URL kopieren",
+  "configuration.remoteUrlFormat.markdownDescription": "Format für **Repository-URL kopieren**. `https` wandelt übliche SSH-Remotes in browserfreundliche HTTPS-URLs um; `preserve` kopiert die Git-Remote unverändert.",
+  "configuration.remoteName.description": "Git-Remote-Name für das Kopieren der Repository-URL."
+}

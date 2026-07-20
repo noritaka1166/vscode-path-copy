@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "Copie les chemins de fichiers et les URL de dépôts Git depuis l’Explorateur et les onglets de l’éditeur.",
+  "command.showCopyPicker": "Copier le chemin ou l’URL du dépôt…",
+  "command.copyAbsolutePath": "Copier le chemin absolu",
+  "command.copyFileName": "Copier le nom du fichier",
+  "command.copyWorkspaceRelativePath": "Copier le chemin relatif au dossier d’espace de travail",
+  "command.copyRepositoryRelativePath": "Copier le chemin relatif à la racine du dépôt",
+  "command.copyRepositoryUrl": "Copier l’URL du dépôt",
+  "configuration.remoteUrlFormat.markdownDescription": "Format utilisé par **Copier l’URL du dépôt**. `https` convertit les remotes SSH courants en URL HTTPS adaptées au navigateur ; `preserve` copie le remote Git tel qu’il est configuré.",
+  "configuration.remoteName.description": "Nom du remote Git utilisé pour copier l’URL du dépôt."
+}

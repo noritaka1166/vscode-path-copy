@@ -1,0 +1,15 @@
+{
+  "Copy": "コピー",
+  "Select a value to copy": "コピーする値を選択",
+  "Absolute Path": "絶対パス",
+  "File Name": "ファイル名",
+  "Path": "パス",
+  "Path Relative to Content Root": "コンテンツルートからのパス",
+  "Path Relative to Repository Root": "リポジトリルートからのパス",
+  "Repository": "リポジトリ",
+  "Repository URL": "リポジトリ URL",
+  "Path Copy: {0} copied": "Path Copy: {0} をコピーしました",
+  "Select a local file or folder first.": "最初にローカルのファイルまたはフォルダーを選択してください。",
+  "The selected file does not belong to an open workspace folder.": "選択したファイルは開いているワークスペースフォルダーに含まれていません。",
+  "No Git repository was found for the selected item.": "選択した項目の Git リポジトリが見つかりません。"
+}

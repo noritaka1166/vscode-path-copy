@@ -1,0 +1,15 @@
+{
+  "Copy": "복사",
+  "Select a value to copy": "복사할 값을 선택하세요",
+  "Absolute Path": "절대 경로",
+  "File Name": "파일 이름",
+  "Path": "경로",
+  "Path Relative to Content Root": "콘텐츠 루트 기준 경로",
+  "Path Relative to Repository Root": "리포지토리 루트 기준 경로",
+  "Repository": "리포지토리",
+  "Repository URL": "리포지토리 URL",
+  "Path Copy: {0} copied": "Path Copy: {0}을(를) 복사했습니다",
+  "Select a local file or folder first.": "먼저 로컬 파일 또는 폴더를 선택하세요.",
+  "The selected file does not belong to an open workspace folder.": "선택한 파일이 열려 있는 작업 영역 폴더에 속하지 않습니다.",
+  "No Git repository was found for the selected item.": "선택한 항목의 Git 리포지토리를 찾을 수 없습니다."
+}

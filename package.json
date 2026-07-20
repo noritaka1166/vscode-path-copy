@@ -1,0 +1,118 @@
+{
+  "name": "path-copy",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "0.1.0",
+  "publisher": "noritaka1166",
+  "author": "noritaka1166",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "path",
+    "copy path",
+    "file path",
+    "repository url",
+    "git",
+    "intellij"
+  ],
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noritaka1166/vscode-path-copy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noritaka1166/vscode-path-copy/issues"
+  },
+  "homepage": "https://github.com/noritaka1166/vscode-path-copy#readme",
+  "extensionKind": [
+    "workspace"
+  ],
+  "files": [
+    "src/**",
+    "README*.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "package.nls*.json",
+    "l10n/**"
+  ],
+  "l10n": "./l10n",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pathCopy.showCopyPicker",
+        "title": "%command.showCopyPicker%"
+      },
+      {
+        "command": "pathCopy.copyAbsolutePath",
+        "title": "%command.copyAbsolutePath%"
+      },
+      {
+        "command": "pathCopy.copyFileName",
+        "title": "%command.copyFileName%"
+      },
+      {
+        "command": "pathCopy.copyWorkspaceRelativePath",
+        "title": "%command.copyWorkspaceRelativePath%"
+      },
+      {
+        "command": "pathCopy.copyRepositoryRelativePath",
+        "title": "%command.copyRepositoryRelativePath%"
+      },
+      {
+        "command": "pathCopy.copyRepositoryUrl",
+        "title": "%command.copyRepositoryUrl%"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pathCopy.showCopyPicker",
+          "group": "9_cutcopypaste"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "pathCopy.showCopyPicker",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Path Copy",
+      "properties": {
+        "pathCopy.remoteUrlFormat": {
+          "type": "string",
+          "enum": [
+            "https",
+            "preserve"
+          ],
+          "default": "https",
+          "markdownDescription": "%configuration.remoteUrlFormat.markdownDescription%"
+        },
+        "pathCopy.remoteName": {
+          "type": "string",
+          "default": "origin",
+          "description": "%configuration.remoteName.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/extension.js && node --check src/path-utils.js",
+    "vscode:prepublish": "npm run check && npm test"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.7.1"
+  }
+}

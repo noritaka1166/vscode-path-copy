@@ -1,0 +1,15 @@
+{
+  "Copy": "Copier",
+  "Select a value to copy": "Sélectionnez une valeur à copier",
+  "Absolute Path": "Chemin absolu",
+  "File Name": "Nom du fichier",
+  "Path": "Chemin",
+  "Path Relative to Content Root": "Chemin relatif à la racine du contenu",
+  "Path Relative to Repository Root": "Chemin relatif à la racine du dépôt",
+  "Repository": "Dépôt",
+  "Repository URL": "URL du dépôt",
+  "Path Copy: {0} copied": "Path Copy : {0} a été copié",
+  "Select a local file or folder first.": "Sélectionnez d’abord un fichier ou dossier local.",
+  "The selected file does not belong to an open workspace folder.": "Le fichier sélectionné n’appartient pas à un dossier d’espace de travail ouvert.",
+  "No Git repository was found for the selected item.": "Aucun dépôt Git n’a été trouvé pour l’élément sélectionné."
+}

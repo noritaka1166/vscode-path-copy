@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "Copia rutas de archivos y URL de repositorios Git desde el Explorador y las pestañas del editor.",
+  "command.showCopyPicker": "Copiar ruta o URL del repositorio…",
+  "command.copyAbsolutePath": "Copiar ruta absoluta",
+  "command.copyFileName": "Copiar nombre de archivo",
+  "command.copyWorkspaceRelativePath": "Copiar ruta relativa a la carpeta del área de trabajo",
+  "command.copyRepositoryRelativePath": "Copiar ruta relativa a la raíz del repositorio",
+  "command.copyRepositoryUrl": "Copiar URL del repositorio",
+  "configuration.remoteUrlFormat.markdownDescription": "Formato usado por **Copiar URL del repositorio**. `https` convierte remotos SSH comunes en URL HTTPS adecuadas para el navegador; `preserve` copia el remoto Git tal como está configurado.",
+  "configuration.remoteName.description": "Nombre del remoto Git usado para copiar la URL del repositorio."
+}

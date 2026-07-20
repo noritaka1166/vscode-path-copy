@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "从资源管理器和编辑器标签页复制文件路径与 Git 仓库 URL。",
+  "command.showCopyPicker": "复制路径或仓库 URL…",
+  "command.copyAbsolutePath": "复制绝对路径",
+  "command.copyFileName": "复制文件名",
+  "command.copyWorkspaceRelativePath": "复制相对于工作区文件夹的路径",
+  "command.copyRepositoryRelativePath": "复制相对于仓库根目录的路径",
+  "command.copyRepositoryUrl": "复制仓库 URL",
+  "configuration.remoteUrlFormat.markdownDescription": "**复制仓库 URL** 使用的格式。`https` 会将常见 SSH 远程地址转换为适合浏览器的 HTTPS URL；`preserve` 会按 Git 配置原样复制远程地址。",
+  "configuration.remoteName.description": "用于复制仓库 URL 的 Git 远程名称。"
+}

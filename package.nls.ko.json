@@ -1,0 +1,12 @@
+{
+  "displayName": "Path Copy",
+  "description": "탐색기와 편집기 탭에서 파일 경로와 Git 리포지토리 URL을 복사합니다.",
+  "command.showCopyPicker": "경로 또는 리포지토리 URL 복사…",
+  "command.copyAbsolutePath": "절대 경로 복사",
+  "command.copyFileName": "파일 이름 복사",
+  "command.copyWorkspaceRelativePath": "작업 영역 폴더 기준 경로 복사",
+  "command.copyRepositoryRelativePath": "리포지토리 루트 기준 경로 복사",
+  "command.copyRepositoryUrl": "리포지토리 URL 복사",
+  "configuration.remoteUrlFormat.markdownDescription": "**리포지토리 URL 복사**에 사용할 형식입니다. `https`는 일반적인 SSH 원격을 브라우저용 HTTPS URL로 변환하고, `preserve`는 구성된 Git 원격을 그대로 복사합니다.",
+  "configuration.remoteName.description": "리포지토리 URL 복사에 사용할 Git 원격 이름입니다."
+}
