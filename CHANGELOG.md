@@ -2,6 +2,14 @@
 
 All notable changes to Path Copy are documented in this file.
 
+## 0.1.1 - 2026-08-30
+
+Dependency maintenance release.
+
+- Update `@vscode/vsce` from 3.7.1 to 3.9.2.
+- Update transitive dependencies: `undici` to 7.29.0, `fast-uri` to 3.1.5, `js-yaml` to 4.3.1, and `brace-expansion` to 5.0.9.
+- Refresh the dependency lockfile, including the updated Node.js engine compatibility for `brace-expansion`.
+
 ## 0.1.0 - 2026-07-20
 
 Initial Marketplace release.
