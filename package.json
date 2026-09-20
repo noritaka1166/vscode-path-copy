@@ -93,6 +93,18 @@
       {
         "command": "pathCopy.copyPermanentGitLink",
         "title": "%command.copyPermanentGitLink%"
+      },
+      {
+        "command": "pathCopy.copyRelativePathsLines",
+        "title": "%command.copyRelativePathsLines%"
+      },
+      {
+        "command": "pathCopy.copyRelativePathsJson",
+        "title": "%command.copyRelativePathsJson%"
+      },
+      {
+        "command": "pathCopy.copyRelativePathsMarkdown",
+        "title": "%command.copyRelativePathsMarkdown%"
       }
     ],
     "menus": {
@@ -100,6 +112,18 @@
         {
           "command": "pathCopy.showCopyPicker",
           "group": "9_cutcopypaste"
+        },
+        {
+          "command": "pathCopy.copyRelativePathsLines",
+          "group": "9_cutcopypaste@1"
+        },
+        {
+          "command": "pathCopy.copyRelativePathsJson",
+          "group": "9_cutcopypaste@2"
+        },
+        {
+          "command": "pathCopy.copyRelativePathsMarkdown",
+          "group": "9_cutcopypaste@3"
         }
       ],
       "editor/title/context": [

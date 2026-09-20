@@ -9,6 +9,9 @@
   "command.copyMarkdownLink": "Markdown リンクをコピー",
   "command.copyRepositoryUrl": "リポジトリ URL をコピー",
   "command.copyPermanentGitLink": "恒久的な Git リンクをコピー",
+  "command.copyRelativePathsLines": "相対パスをコピー（改行区切り）",
+  "command.copyRelativePathsJson": "相対パスを JSON としてコピー",
+  "command.copyRelativePathsMarkdown": "相対パスを Markdown リストとしてコピー",
   "configuration.remoteUrlFormat.markdownDescription": "**リポジトリ URL をコピー**で使う形式です。`https` は一般的な SSH リモートをブラウザー向けの HTTPS URL に変換し、`preserve` は Git に設定された URL をそのままコピーします。",
   "configuration.remoteName.description": "リポジトリ URL のコピーに使用する Git リモート名です。"
 }

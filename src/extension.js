@@ -2,16 +2,22 @@ const path = require('node:path');
 const { execFile } = require('node:child_process');
 const { promisify } = require('node:util');
 const vscode = require('vscode');
-const { relativePath, toBrowserUrl, toMarkdownLink, toPermanentGitUrl } = require('./path-utils');
+const {
+  relativePath,
+  toBrowserUrl,
+  toMarkdownLink,
+  toPermanentGitUrl,
+  toPathList
+} = require('./path-utils');
 
 const execFileAsync = promisify(execFile);
 const t = vscode.l10n.t;
 
 function activate(context) {
-  const register = (command, handler) => {
+  const register = (command, handler, resourceResolver = resolveResource) => {
     context.subscriptions.push(vscode.commands.registerCommand(command, async (...args) => {
       try {
-        await handler(resolveResource(args));
+        await handler(resourceResolver(args));
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
         vscode.window.showErrorMessage(`Path Copy: ${message}`);
@@ -23,9 +29,13 @@ function activate(context) {
     await copy(t('Absolute Path'), resource.fsPath);
   });
 
-  register('pathCopy.showCopyPicker', async (resource) => {
-    await showCopyPicker(resource);
-  });
+  register('pathCopy.showCopyPicker', async (resources) => {
+    if (resources.length > 1) {
+      await showBatchCopyPicker(resources);
+      return;
+    }
+    await showCopyPicker(resources[0]);
+  }, resolveResources);
 
   register('pathCopy.copyFileName', async (resource) => {
     await copy(t('File Name'), path.basename(resource.fsPath));
@@ -64,14 +74,42 @@ function activate(context) {
     const root = await gitRoot(resource);
     await copy(t('Permanent Git Link'), await permanentGitLink(resource, root));
   });
+
+  register('pathCopy.copyRelativePathsLines', async (resources) => {
+    await copy(t('Relative Paths (Lines)'), toPathList(workspaceRelativePaths(resources), 'lines'));
+  }, resolveResources);
+
+  register('pathCopy.copyRelativePathsJson', async (resources) => {
+    await copy(t('Relative Paths (JSON)'), toPathList(workspaceRelativePaths(resources), 'json'));
+  }, resolveResources);
+
+  register('pathCopy.copyRelativePathsMarkdown', async (resources) => {
+    await copy(
+      t('Relative Paths (Markdown List)'),
+      toPathList(workspaceRelativePaths(resources), 'markdown')
+    );
+  }, resolveResources);
 }
 
 async function showCopyPicker(resource) {
+  await showPicker(await createCopyItems(resource));
+}
+
+async function showBatchCopyPicker(resources) {
+  const relativePaths = workspaceRelativePaths(resources);
+  await showPicker([
+    pickerItem(t('Relative Paths (Lines)'), toPathList(relativePaths, 'lines')),
+    pickerItem(t('Relative Paths (JSON)'), toPathList(relativePaths, 'json')),
+    pickerItem(t('Relative Paths (Markdown List)'), toPathList(relativePaths, 'markdown'))
+  ]);
+}
+
+async function showPicker(items) {
   const quickPick = vscode.window.createQuickPick();
   quickPick.title = t('Copy');
   quickPick.placeholder = t('Select a value to copy');
   quickPick.matchOnDescription = true;
-  quickPick.items = await createCopyItems(resource);
+  quickPick.items = items;
 
   const disposables = [
     quickPick.onDidAccept(async () => {
@@ -153,12 +191,36 @@ function abbreviate(value, limit = 96) {
 }
 
 function resolveResource(args) {
-  const uri = args.find((arg) => arg instanceof vscode.Uri);
-  const resource = uri || vscode.window.activeTextEditor?.document.uri;
-  if (resource?.scheme !== 'file') {
+  return resolveResources(args)[0];
+}
+
+function resolveResources(args) {
+  const resources = args.flatMap(findUris);
+  if (!resources.length && vscode.window.activeTextEditor?.document.uri) {
+    resources.push(vscode.window.activeTextEditor.document.uri);
+  }
+  const localResources = resources.filter((resource) => resource.scheme === 'file');
+  if (!localResources.length) {
     throw new Error(t('Select a local file or folder first.'));
   }
-  return resource;
+  return [...new Map(localResources.map((resource) => [resource.toString(), resource])).values()];
+}
+
+function findUris(value) {
+  if (value instanceof vscode.Uri) {
+    return [value];
+  }
+  return Array.isArray(value) ? value.flatMap(findUris) : [];
+}
+
+function workspaceRelativePaths(resources) {
+  return resources.map((resource) => {
+    const folder = vscode.workspace.getWorkspaceFolder(resource);
+    if (!folder) {
+      throw new Error(t('The selected file does not belong to an open workspace folder.'));
+    }
+    return relativePath(folder.uri.fsPath, resource.fsPath);
+  });
 }
 
 async function gitRoot(resource) {

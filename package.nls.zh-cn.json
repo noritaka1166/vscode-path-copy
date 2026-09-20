@@ -9,6 +9,9 @@
   "command.copyMarkdownLink": "复制 Markdown 链接",
   "command.copyRepositoryUrl": "复制仓库 URL",
   "command.copyPermanentGitLink": "复制永久 Git 链接",
+  "command.copyRelativePathsLines": "复制相对路径（按行）",
+  "command.copyRelativePathsJson": "将相对路径复制为 JSON",
+  "command.copyRelativePathsMarkdown": "将相对路径复制为 Markdown 列表",
   "configuration.remoteUrlFormat.markdownDescription": "**复制仓库 URL** 使用的格式。`https` 会将常见 SSH 远程地址转换为适合浏览器的 HTTPS URL；`preserve` 会按 Git 配置原样复制远程地址。",
   "configuration.remoteName.description": "用于复制仓库 URL 的 Git 远程名称。"
 }

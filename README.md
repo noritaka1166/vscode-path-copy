@@ -32,11 +32,14 @@ Long values are shortened in the picker. Hover the information icon on the right
 | File Name | just the selected file or folder name |
 | Path Relative to Content Root | a path from the current VS Code workspace folder |
 | Path Relative to Repository Root | a stable project-relative reference for documentation, issues, or reviews |
+| Relative Paths (Multiple Selection) | newline-delimited paths, a JSON array, or a Markdown list for several Explorer items |
 | Markdown Link | a ready-to-paste relative link for a README, issue, or review |
 | Repository URL | a link to the selected item's Git repository |
 | Permanent Git Link | a GitHub or GitLab link pinned to the current commit, including selected editor lines when available |
 
 Git-related options use the nearest repository containing the selected item. Markdown links use that repository-relative path when available, otherwise the selected item's workspace-relative path. Permanent Git links use the current commit SHA, so they remain stable when branches move. In multi-root workspaces, Path Copy uses the selected item's own workspace folder.
+
+When several files or folders are selected in the Explorer, **Copy Path or Repository URL…** offers the three batch formats. You can also choose the corresponding direct command from the context menu.
 
 ## Repository URL format
 

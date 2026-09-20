@@ -9,6 +9,9 @@
   "command.copyMarkdownLink": "Markdown 링크 복사",
   "command.copyRepositoryUrl": "리포지토리 URL 복사",
   "command.copyPermanentGitLink": "영구 Git 링크 복사",
+  "command.copyRelativePathsLines": "상대 경로 복사(줄 단위)",
+  "command.copyRelativePathsJson": "상대 경로를 JSON으로 복사",
+  "command.copyRelativePathsMarkdown": "상대 경로를 Markdown 목록으로 복사",
   "configuration.remoteUrlFormat.markdownDescription": "**리포지토리 URL 복사**에 사용할 형식입니다. `https`는 일반적인 SSH 원격을 브라우저용 HTTPS URL로 변환하고, `preserve`는 구성된 Git 원격을 그대로 복사합니다.",
   "configuration.remoteName.description": "리포지토리 URL 복사에 사용할 Git 원격 이름입니다."
 }

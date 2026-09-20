@@ -61,6 +61,18 @@ function toPermanentGitUrl(remoteUrl, revision, repositoryPath, options = {}) {
   return url.toString();
 }
 
+function toPathList(relativePaths, format) {
+  if (format === 'json') {
+    return JSON.stringify(relativePaths, null, 2);
+  }
+  if (format === 'markdown') {
+    return relativePaths
+      .map((relativePath) => `- \`${relativePath.replace(/`/g, '\\`')}\``)
+      .join('\n');
+  }
+  return relativePaths.join('\n');
+}
+
 function encodePathSegment(segment) {
   return encodeURIComponent(segment).replace(/[!'()*]/g, (character) => (
     `%${character.charCodeAt(0).toString(16).toUpperCase()}`
@@ -71,4 +83,10 @@ function stripGitSuffix(value) {
   return value.replace(/\.git$/i, '');
 }
 
-module.exports = { relativePath, toBrowserUrl, toMarkdownLink, toPermanentGitUrl };
+module.exports = {
+  relativePath,
+  toBrowserUrl,
+  toMarkdownLink,
+  toPermanentGitUrl,
+  toPathList
+};

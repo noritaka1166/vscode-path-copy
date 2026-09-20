@@ -4,7 +4,8 @@ const {
   relativePath,
   toBrowserUrl,
   toMarkdownLink,
-  toPermanentGitUrl
+  toPermanentGitUrl,
+  toPathList
 } = require('../src/path-utils');
 
 test('relativePath returns a slash-separated relative path', () => {
@@ -47,4 +48,11 @@ test('toPermanentGitUrl creates a commit-pinned directory link without a line an
     toPermanentGitUrl('https://github.com/octo/example.git', 'a1b2c3d', 'docs', { isDirectory: true }),
     'https://github.com/octo/example/tree/a1b2c3d/docs'
   );
+});
+
+test('toPathList formats relative paths as lines, JSON, or a Markdown list', () => {
+  const paths = ['src/extension.js', 'docs/path`notes.md'];
+  assert.equal(toPathList(paths, 'lines'), 'src/extension.js\ndocs/path`notes.md');
+  assert.equal(toPathList(paths, 'json'), '[\n  "src/extension.js",\n  "docs/path`notes.md"\n]');
+  assert.equal(toPathList(paths, 'markdown'), '- `src/extension.js`\n- `docs/path\\`notes.md`');
 });
