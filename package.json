@@ -89,6 +89,10 @@
       {
         "command": "pathCopy.copyRepositoryUrl",
         "title": "%command.copyRepositoryUrl%"
+      },
+      {
+        "command": "pathCopy.copyPermanentGitLink",
+        "title": "%command.copyPermanentGitLink%"
       }
     ],
     "menus": {

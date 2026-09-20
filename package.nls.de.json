@@ -8,6 +8,7 @@
   "command.copyRepositoryRelativePath": "Pfad relativ zum Repository-Stamm kopieren",
   "command.copyMarkdownLink": "Markdown-Link kopieren",
   "command.copyRepositoryUrl": "Repository-URL kopieren",
+  "command.copyPermanentGitLink": "Permanenten Git-Link kopieren",
   "configuration.remoteUrlFormat.markdownDescription": "Format für **Repository-URL kopieren**. `https` wandelt übliche SSH-Remotes in browserfreundliche HTTPS-URLs um; `preserve` kopiert die Git-Remote unverändert.",
   "configuration.remoteName.description": "Git-Remote-Name für das Kopieren der Repository-URL."
 }

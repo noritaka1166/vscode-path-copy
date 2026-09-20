@@ -2,7 +2,7 @@ const path = require('node:path');
 const { execFile } = require('node:child_process');
 const { promisify } = require('node:util');
 const vscode = require('vscode');
-const { relativePath, toBrowserUrl, toMarkdownLink } = require('./path-utils');
+const { relativePath, toBrowserUrl, toMarkdownLink, toPermanentGitUrl } = require('./path-utils');
 
 const execFileAsync = promisify(execFile);
 const t = vscode.l10n.t;
@@ -58,6 +58,11 @@ function activate(context) {
       ? remote
       : toBrowserUrl(remote);
     await copy(t('Repository URL'), url);
+  });
+
+  register('pathCopy.copyPermanentGitLink', async (resource) => {
+    const root = await gitRoot(resource);
+    await copy(t('Permanent Git Link'), await permanentGitLink(resource, root));
   });
 }
 
@@ -127,6 +132,10 @@ async function createCopyItems(resource) {
   if (url) {
     items.push(pickerItem(t('Repository URL'), url));
   }
+  const permanentLink = await findPermanentGitLink(resource, repositoryRoot);
+  if (permanentLink) {
+    items.push(pickerItem(t('Permanent Git Link'), permanentLink));
+  }
   return items;
 }
 
@@ -187,15 +196,53 @@ async function findRepositoryUrl(root) {
   }
 }
 
+async function findPermanentGitLink(resource, root) {
+  try {
+    return await permanentGitLink(resource, root);
+  } catch {
+    return undefined;
+  }
+}
+
+async function permanentGitLink(resource, root) {
+  const config = vscode.workspace.getConfiguration('pathCopy');
+  const remote = await git(root, ['remote', 'get-url', config.get('remoteName', 'origin')]);
+  const revision = await git(root, ['rev-parse', 'HEAD']);
+  const stat = await vscode.workspace.fs.stat(resource);
+  const lineRange = isDirectory(stat.type) ? undefined : selectedLineRange(resource);
+  return toPermanentGitUrl(remote, revision, relativePath(root, resource.fsPath), {
+    isDirectory: isDirectory(stat.type),
+    ...lineRange
+  });
+}
+
 async function workingDirectoryFor(resource) {
   const stat = await vscode.workspace.fs.stat(resource);
+  return isDirectory(stat.type)
+    ? resource.fsPath
+    : path.dirname(resource.fsPath);
+}
+
+function isDirectory(fileType) {
   const directoryTypes = [
     vscode.FileType.Directory,
     vscode.FileType.Directory + vscode.FileType.SymbolicLink
   ];
-  return directoryTypes.includes(stat.type)
-    ? resource.fsPath
-    : path.dirname(resource.fsPath);
+  return directoryTypes.includes(fileType);
+}
+
+function selectedLineRange(resource) {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor || editor.document.uri.fsPath !== resource.fsPath) {
+    return undefined;
+  }
+  const { selection } = editor;
+  const startLine = selection.start.line + 1;
+  if (selection.isEmpty) {
+    return { startLine };
+  }
+  const endLine = selection.end.line + 1 - (selection.end.character === 0 ? 1 : 0);
+  return { startLine, endLine };
 }
 
 async function git(cwd, args) {

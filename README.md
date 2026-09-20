@@ -4,7 +4,7 @@
 
 **Copy the right file path or Git repository URL without leaving VS Code.**
 
-Path Copy adds an IntelliJ-style copy picker to the Explorer and editor tabs. See the exact value before copying an absolute path, workspace path, repository path, Markdown link, file name, or repository URL.
+Path Copy adds an IntelliJ-style copy picker to the Explorer and editor tabs. See the exact value before copying an absolute path, workspace path, repository path, Markdown link, permanent Git link, file name, or repository URL.
 
 [日本語版](README.ja.md) · [Report an issue](https://github.com/noritaka1166/vscode-path-copy/issues) · [Source code](https://github.com/noritaka1166/vscode-path-copy)
 
@@ -34,8 +34,9 @@ Long values are shortened in the picker. Hover the information icon on the right
 | Path Relative to Repository Root | a stable project-relative reference for documentation, issues, or reviews |
 | Markdown Link | a ready-to-paste relative link for a README, issue, or review |
 | Repository URL | a link to the selected item's Git repository |
+| Permanent Git Link | a GitHub or GitLab link pinned to the current commit, including selected editor lines when available |
 
-Git-related options use the nearest repository containing the selected item. Markdown links use that repository-relative path when available, otherwise the selected item's workspace-relative path. In multi-root workspaces, Path Copy uses the selected item's own workspace folder.
+Git-related options use the nearest repository containing the selected item. Markdown links use that repository-relative path when available, otherwise the selected item's workspace-relative path. Permanent Git links use the current commit SHA, so they remain stable when branches move. In multi-root workspaces, Path Copy uses the selected item's own workspace folder.
 
 ## Repository URL format
 
@@ -64,7 +65,7 @@ Path Copy follows your VS Code display language. English is the default, with Ja
 ## Requirements
 
 - VS Code 1.85 or later
-- Git is required only for repository-relative paths and repository URLs
+- Git is required only for repository-relative paths, repository URLs, and permanent Git links
 
 ## Contributing and support
 

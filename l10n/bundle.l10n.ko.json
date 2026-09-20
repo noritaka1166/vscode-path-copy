@@ -7,6 +7,7 @@
   "Path Relative to Content Root": "콘텐츠 루트 기준 경로",
   "Path Relative to Repository Root": "리포지토리 루트 기준 경로",
   "Markdown Link": "Markdown 링크",
+  "Permanent Git Link": "영구 Git 링크",
   "Repository": "리포지토리",
   "Repository URL": "리포지토리 URL",
   "Path Copy: {0} copied": "Path Copy: {0}을(를) 복사했습니다",

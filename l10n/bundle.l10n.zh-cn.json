@@ -7,6 +7,7 @@
   "Path Relative to Content Root": "相对于内容根目录的路径",
   "Path Relative to Repository Root": "相对于仓库根目录的路径",
   "Markdown Link": "Markdown 链接",
+  "Permanent Git Link": "永久 Git 链接",
   "Repository": "仓库",
   "Repository URL": "仓库 URL",
   "Path Copy: {0} copied": "Path Copy：已复制 {0}",

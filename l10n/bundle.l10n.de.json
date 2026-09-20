@@ -7,6 +7,7 @@
   "Path Relative to Content Root": "Pfad relativ zum Inhaltsstamm",
   "Path Relative to Repository Root": "Pfad relativ zum Repository-Stamm",
   "Markdown Link": "Markdown-Link",
+  "Permanent Git Link": "Permanenter Git-Link",
   "Repository": "Repository",
   "Repository URL": "Repository-URL",
   "Path Copy: {0} copied": "Path Copy: {0} wurde kopiert",

@@ -7,6 +7,7 @@
   "Path Relative to Content Root": "コンテンツルートからのパス",
   "Path Relative to Repository Root": "リポジトリルートからのパス",
   "Markdown Link": "Markdown リンク",
+  "Permanent Git Link": "恒久的な Git リンク",
   "Repository": "リポジトリ",
   "Repository URL": "リポジトリ URL",
   "Path Copy: {0} copied": "Path Copy: {0} をコピーしました",
