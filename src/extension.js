@@ -2,7 +2,7 @@ const path = require('node:path');
 const { execFile } = require('node:child_process');
 const { promisify } = require('node:util');
 const vscode = require('vscode');
-const { relativePath, toBrowserUrl } = require('./path-utils');
+const { relativePath, toBrowserUrl, toMarkdownLink } = require('./path-utils');
 
 const execFileAsync = promisify(execFile);
 const t = vscode.l10n.t;
@@ -42,6 +42,11 @@ function activate(context) {
   register('pathCopy.copyRepositoryRelativePath', async (resource) => {
     const root = await gitRoot(resource);
     await copy(t('Path Relative to Repository Root'), relativePath(root, resource.fsPath));
+  });
+
+  register('pathCopy.copyMarkdownLink', async (resource) => {
+    const root = await markdownLinkRoot(resource);
+    await copy(t('Markdown Link'), toMarkdownLink(relativePath(root, resource.fsPath)));
   });
 
   register('pathCopy.copyRepositoryUrl', async (resource) => {
@@ -103,6 +108,13 @@ async function createCopyItems(resource) {
   }
 
   const repositoryRoot = await findGitRoot(resource);
+  const markdownRoot = repositoryRoot || workspaceFolder?.uri.fsPath;
+  if (markdownRoot) {
+    items.push(pickerItem(
+      t('Markdown Link'),
+      toMarkdownLink(relativePath(markdownRoot, resource.fsPath))
+    ));
+  }
   if (!repositoryRoot) {
     return items;
   }
@@ -151,6 +163,18 @@ async function findGitRoot(resource) {
   } catch {
     return undefined;
   }
+}
+
+async function markdownLinkRoot(resource) {
+  const repositoryRoot = await findGitRoot(resource);
+  if (repositoryRoot) {
+    return repositoryRoot;
+  }
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(resource);
+  if (workspaceFolder) {
+    return workspaceFolder.uri.fsPath;
+  }
+  throw new Error(t('The selected file does not belong to an open workspace folder or Git repository.'));
 }
 
 async function findRepositoryUrl(root) {

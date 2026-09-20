@@ -6,6 +6,7 @@
   "command.copyFileName": "Copier le nom du fichier",
   "command.copyWorkspaceRelativePath": "Copier le chemin relatif au dossier d’espace de travail",
   "command.copyRepositoryRelativePath": "Copier le chemin relatif à la racine du dépôt",
+  "command.copyMarkdownLink": "Copier le lien Markdown",
   "command.copyRepositoryUrl": "Copier l’URL du dépôt",
   "configuration.remoteUrlFormat.markdownDescription": "Format utilisé par **Copier l’URL du dépôt**. `https` convertit les remotes SSH courants en URL HTTPS adaptées au navigateur ; `preserve` copie le remote Git tel qu’il est configuré.",
   "configuration.remoteName.description": "Nom du remote Git utilisé pour copier l’URL du dépôt."

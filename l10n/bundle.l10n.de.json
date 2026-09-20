@@ -6,10 +6,12 @@
   "Path": "Pfad",
   "Path Relative to Content Root": "Pfad relativ zum Inhaltsstamm",
   "Path Relative to Repository Root": "Pfad relativ zum Repository-Stamm",
+  "Markdown Link": "Markdown-Link",
   "Repository": "Repository",
   "Repository URL": "Repository-URL",
   "Path Copy: {0} copied": "Path Copy: {0} wurde kopiert",
   "Select a local file or folder first.": "Wählen Sie zuerst eine lokale Datei oder einen Ordner aus.",
   "The selected file does not belong to an open workspace folder.": "Die ausgewählte Datei gehört zu keinem geöffneten Arbeitsbereichsordner.",
+  "The selected file does not belong to an open workspace folder or Git repository.": "Die ausgewählte Datei gehört weder zu einem geöffneten Arbeitsbereichsordner noch zu einem Git-Repository.",
   "No Git repository was found for the selected item.": "Für das ausgewählte Element wurde kein Git-Repository gefunden."
 }

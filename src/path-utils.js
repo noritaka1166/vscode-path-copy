@@ -32,8 +32,19 @@ function toBrowserUrl(remoteUrl) {
   }
 }
 
+function toMarkdownLink(relativeFilePath) {
+  const label = relativeFilePath.replace(/([\\[\]])/g, '\\$1');
+  const destination = relativeFilePath
+    .split('/')
+    .map((segment) => encodeURIComponent(segment).replace(/[!'()*]/g, (character) => (
+      `%${character.charCodeAt(0).toString(16).toUpperCase()}`
+    )))
+    .join('/');
+  return `[${label}](${destination})`;
+}
+
 function stripGitSuffix(value) {
   return value.replace(/\.git$/i, '');
 }
 
-module.exports = { relativePath, toBrowserUrl };
+module.exports = { relativePath, toBrowserUrl, toMarkdownLink };

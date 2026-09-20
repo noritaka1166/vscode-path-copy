@@ -83,6 +83,10 @@
         "title": "%command.copyRepositoryRelativePath%"
       },
       {
+        "command": "pathCopy.copyMarkdownLink",
+        "title": "%command.copyMarkdownLink%"
+      },
+      {
         "command": "pathCopy.copyRepositoryUrl",
         "title": "%command.copyRepositoryUrl%"
       }
