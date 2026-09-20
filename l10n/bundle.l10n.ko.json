@@ -1,5 +1,6 @@
 {
   "Copy": "복사",
+  "Code Position": "코드 위치",
   "Custom Templates": "사용자 지정 템플릿",
   "Select a value to copy": "복사할 값을 선택하세요",
   "Absolute Path": "절대 경로",
@@ -16,6 +17,7 @@
   "Repository URL": "리포지토리 URL",
   "Path Copy: {0} copied": "Path Copy: {0}을(를) 복사했습니다",
   "Select a local file or folder first.": "먼저 로컬 파일 또는 폴더를 선택하세요.",
+  "Open the selected file in the active editor first.": "먼저 선택한 파일을 활성 편집기에서 여세요.",
   "The selected file does not belong to an open workspace folder.": "선택한 파일이 열려 있는 작업 영역 폴더에 속하지 않습니다.",
   "The selected file does not belong to an open workspace folder or Git repository.": "선택한 파일이 열려 있는 작업 영역 폴더나 Git 리포지토리에 속하지 않습니다.",
   "No Git repository was found for the selected item.": "선택한 항목의 Git 리포지토리를 찾을 수 없습니다."

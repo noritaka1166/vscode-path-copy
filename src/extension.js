@@ -8,6 +8,7 @@ const {
   toMarkdownLink,
   toPermanentGitUrl,
   toPathList,
+  toCodePosition,
   templatePlaceholders,
   renderTemplate
 } = require('./path-utils');
@@ -52,6 +53,14 @@ function activate(context) {
 
   register('pathCopy.copyFileName', async (resource) => {
     await copy(t('File Name'), path.basename(resource.fsPath));
+  });
+
+  register('pathCopy.copyCodePosition', async (resource) => {
+    const position = await codePositionForResource(resource);
+    if (!position) {
+      throw new Error(t('Open the selected file in the active editor first.'));
+    }
+    await copy(t('Code Position'), position);
   });
 
   register('pathCopy.copyWorkspaceRelativePath', async (resource) => {
@@ -164,6 +173,13 @@ async function createCopyItems(resource) {
   }
 
   const repositoryRoot = await findGitRoot(resource);
+  const codePosition = codePositionForActiveEditor(
+    resource,
+    repositoryRoot || workspaceFolder?.uri.fsPath
+  );
+  if (codePosition) {
+    items.push(pickerItem(t('Code Position'), codePosition));
+  }
   const markdownRoot = repositoryRoot || workspaceFolder?.uri.fsPath;
   if (markdownRoot) {
     items.push(pickerItem(
@@ -311,6 +327,22 @@ function workspaceRelativePaths(resources) {
     }
     return relativePath(folder.uri.fsPath, resource.fsPath);
   });
+}
+
+async function codePositionForResource(resource) {
+  const repositoryRoot = await findGitRoot(resource);
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(resource);
+  return codePositionForActiveEditor(resource, repositoryRoot || workspaceFolder?.uri.fsPath);
+}
+
+function codePositionForActiveEditor(resource, root) {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor || editor.document.uri.fsPath !== resource.fsPath) {
+    return undefined;
+  }
+  const { active } = editor.selection;
+  const filePath = root ? relativePath(root, resource.fsPath) : resource.fsPath;
+  return toCodePosition(filePath, active.line + 1, active.character + 1);
 }
 
 async function gitRoot(resource) {

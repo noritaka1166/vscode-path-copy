@@ -4,6 +4,7 @@
   "command.showCopyPicker": "Copier le chemin ou l’URL du dépôt…",
   "command.copyAbsolutePath": "Copier le chemin absolu",
   "command.copyFileName": "Copier le nom du fichier",
+  "command.copyCodePosition": "Copier la position du code",
   "command.copyWorkspaceRelativePath": "Copier le chemin relatif au dossier d’espace de travail",
   "command.copyRepositoryRelativePath": "Copier le chemin relatif à la racine du dépôt",
   "command.copyMarkdownLink": "Copier le lien Markdown",

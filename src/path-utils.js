@@ -73,6 +73,10 @@ function toPathList(relativePaths, format) {
   return relativePaths.join('\n');
 }
 
+function toCodePosition(filePath, line, column) {
+  return `${filePath}:${line}:${column}`;
+}
+
 function templatePlaceholders(template) {
   return [...new Set([...template.matchAll(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g)].map((match) => match[1]))];
 }
@@ -99,6 +103,7 @@ module.exports = {
   toMarkdownLink,
   toPermanentGitUrl,
   toPathList,
+  toCodePosition,
   templatePlaceholders,
   renderTemplate
 };

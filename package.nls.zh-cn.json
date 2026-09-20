@@ -4,6 +4,7 @@
   "command.showCopyPicker": "复制路径或仓库 URL…",
   "command.copyAbsolutePath": "复制绝对路径",
   "command.copyFileName": "复制文件名",
+  "command.copyCodePosition": "复制代码位置",
   "command.copyWorkspaceRelativePath": "复制相对于工作区文件夹的路径",
   "command.copyRepositoryRelativePath": "复制相对于仓库根目录的路径",
   "command.copyMarkdownLink": "复制 Markdown 链接",

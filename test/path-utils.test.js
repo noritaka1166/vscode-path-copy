@@ -6,6 +6,7 @@ const {
   toMarkdownLink,
   toPermanentGitUrl,
   toPathList,
+  toCodePosition,
   templatePlaceholders,
   renderTemplate
 } = require('../src/path-utils');
@@ -57,6 +58,10 @@ test('toPathList formats relative paths as lines, JSON, or a Markdown list', () 
   assert.equal(toPathList(paths, 'lines'), 'src/extension.js\ndocs/path`notes.md');
   assert.equal(toPathList(paths, 'json'), '[\n  "src/extension.js",\n  "docs/path`notes.md"\n]');
   assert.equal(toPathList(paths, 'markdown'), '- `src/extension.js`\n- `docs/path\\`notes.md`');
+});
+
+test('toCodePosition creates a one-based path, line, and column reference', () => {
+  assert.equal(toCodePosition('src/extension.js', 12, 4), 'src/extension.js:12:4');
 });
 
 test('template helpers replace supported variables and preserve unknown placeholders', () => {

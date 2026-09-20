@@ -1,5 +1,6 @@
 {
   "Copy": "コピー",
+  "Code Position": "コード位置",
   "Custom Templates": "カスタムテンプレート",
   "Select a value to copy": "コピーする値を選択",
   "Absolute Path": "絶対パス",
@@ -16,6 +17,7 @@
   "Repository URL": "リポジトリ URL",
   "Path Copy: {0} copied": "Path Copy: {0} をコピーしました",
   "Select a local file or folder first.": "最初にローカルのファイルまたはフォルダーを選択してください。",
+  "Open the selected file in the active editor first.": "最初に選択したファイルをアクティブエディターで開いてください。",
   "The selected file does not belong to an open workspace folder.": "選択したファイルは開いているワークスペースフォルダーに含まれていません。",
   "The selected file does not belong to an open workspace folder or Git repository.": "選択したファイルは、開いているワークスペースフォルダーまたは Git リポジトリに含まれていません。",
   "No Git repository was found for the selected item.": "選択した項目の Git リポジトリが見つかりません。"

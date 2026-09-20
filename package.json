@@ -75,6 +75,10 @@
         "title": "%command.copyFileName%"
       },
       {
+        "command": "pathCopy.copyCodePosition",
+        "title": "%command.copyCodePosition%"
+      },
+      {
         "command": "pathCopy.copyWorkspaceRelativePath",
         "title": "%command.copyWorkspaceRelativePath%"
       },
@@ -130,6 +134,10 @@
         {
           "command": "pathCopy.showCopyPicker",
           "group": "9_cutcopypaste"
+        },
+        {
+          "command": "pathCopy.copyCodePosition",
+          "group": "9_cutcopypaste@1"
         }
       ]
     },

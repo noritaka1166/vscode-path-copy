@@ -1,5 +1,6 @@
 {
   "Copy": "Kopieren",
+  "Code Position": "Codeposition",
   "Custom Templates": "Benutzerdefinierte Vorlagen",
   "Select a value to copy": "Wert zum Kopieren auswählen",
   "Absolute Path": "Absoluter Pfad",
@@ -16,6 +17,7 @@
   "Repository URL": "Repository-URL",
   "Path Copy: {0} copied": "Path Copy: {0} wurde kopiert",
   "Select a local file or folder first.": "Wählen Sie zuerst eine lokale Datei oder einen Ordner aus.",
+  "Open the selected file in the active editor first.": "Öffnen Sie die ausgewählte Datei zuerst im aktiven Editor.",
   "The selected file does not belong to an open workspace folder.": "Die ausgewählte Datei gehört zu keinem geöffneten Arbeitsbereichsordner.",
   "The selected file does not belong to an open workspace folder or Git repository.": "Die ausgewählte Datei gehört weder zu einem geöffneten Arbeitsbereichsordner noch zu einem Git-Repository.",
   "No Git repository was found for the selected item.": "Für das ausgewählte Element wurde kein Git-Repository gefunden."

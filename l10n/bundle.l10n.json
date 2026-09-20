@@ -1,5 +1,6 @@
 {
   "Copy": "Copy",
+  "Code Position": "Code Position",
   "Custom Templates": "Custom Templates",
   "Select a value to copy": "Select a value to copy",
   "Absolute Path": "Absolute Path",
@@ -16,6 +17,7 @@
   "Repository URL": "Repository URL",
   "Path Copy: {0} copied": "Path Copy: {0} copied",
   "Select a local file or folder first.": "Select a local file or folder first.",
+  "Open the selected file in the active editor first.": "Open the selected file in the active editor first.",
   "The selected file does not belong to an open workspace folder.": "The selected file does not belong to an open workspace folder.",
   "The selected file does not belong to an open workspace folder or Git repository.": "The selected file does not belong to an open workspace folder or Git repository.",
   "No Git repository was found for the selected item.": "No Git repository was found for the selected item."

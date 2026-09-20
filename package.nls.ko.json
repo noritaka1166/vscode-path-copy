@@ -4,6 +4,7 @@
   "command.showCopyPicker": "경로 또는 리포지토리 URL 복사…",
   "command.copyAbsolutePath": "절대 경로 복사",
   "command.copyFileName": "파일 이름 복사",
+  "command.copyCodePosition": "코드 위치 복사",
   "command.copyWorkspaceRelativePath": "작업 영역 폴더 기준 경로 복사",
   "command.copyRepositoryRelativePath": "리포지토리 루트 기준 경로 복사",
   "command.copyMarkdownLink": "Markdown 링크 복사",

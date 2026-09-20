@@ -30,6 +30,7 @@ Long values are shortened in the picker. Hover the information icon on the right
 | --- | --- |
 | Absolute Path | a local path for a terminal command, script, or operating-system dialog |
 | File Name | just the selected file or folder name |
+| Code Position | a path, one-based line, and one-based column such as `src/extension.js:12:4` from the active editor |
 | Path Relative to Content Root | a path from the current VS Code workspace folder |
 | Path Relative to Repository Root | a stable project-relative reference for documentation, issues, or reviews |
 | Relative Paths (Multiple Selection) | newline-delimited paths, a JSON array, or a Markdown list for several Explorer items |
@@ -38,6 +39,8 @@ Long values are shortened in the picker. Hover the information icon on the right
 | Permanent Git Link | a GitHub or GitLab link pinned to the current commit, including selected editor lines when available |
 
 Git-related options use the nearest repository containing the selected item. Markdown links use that repository-relative path when available, otherwise the selected item's workspace-relative path. Permanent Git links use the current commit SHA, so they remain stable when branches move. In multi-root workspaces, Path Copy uses the selected item's own workspace folder.
+
+Code positions use the active editor's cursor position. Their path is repository-relative when possible, otherwise workspace-relative; files outside a workspace use an absolute path.
 
 When several files or folders are selected in the Explorer, **Copy Path or Repository URL…** offers the three batch formats. You can also choose the corresponding direct command from the context menu.
 
