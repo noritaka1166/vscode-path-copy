@@ -5,7 +5,9 @@ const {
   toBrowserUrl,
   toMarkdownLink,
   toPermanentGitUrl,
-  toPathList
+  toPathList,
+  templatePlaceholders,
+  renderTemplate
 } = require('../src/path-utils');
 
 test('relativePath returns a slash-separated relative path', () => {
@@ -55,4 +57,20 @@ test('toPathList formats relative paths as lines, JSON, or a Markdown list', () 
   assert.equal(toPathList(paths, 'lines'), 'src/extension.js\ndocs/path`notes.md');
   assert.equal(toPathList(paths, 'json'), '[\n  "src/extension.js",\n  "docs/path`notes.md"\n]');
   assert.equal(toPathList(paths, 'markdown'), '- `src/extension.js`\n- `docs/path\\`notes.md`');
+});
+
+test('template helpers replace supported variables and preserve unknown placeholders', () => {
+  assert.deepEqual(
+    templatePlaceholders('${repoUrl}/blob/${commit}/${path}#L${line}/${path}'),
+    ['repoUrl', 'commit', 'path', 'line']
+  );
+  assert.equal(
+    renderTemplate('${repoUrl}/blob/${commit}/${path}#L${line}/${unknown}', {
+      repoUrl: 'https://github.com/octo/example',
+      commit: 'a1b2c3d',
+      path: 'src/extension.js',
+      line: 10
+    }),
+    'https://github.com/octo/example/blob/a1b2c3d/src/extension.js#L10/${unknown}'
+  );
 });

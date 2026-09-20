@@ -13,5 +13,6 @@
   "command.copyRelativePathsJson": "相対パスを JSON としてコピー",
   "command.copyRelativePathsMarkdown": "相対パスを Markdown リストとしてコピー",
   "configuration.remoteUrlFormat.markdownDescription": "**リポジトリ URL をコピー**で使う形式です。`https` は一般的な SSH リモートをブラウザー向けの HTTPS URL に変換し、`preserve` は Git に設定された URL をそのままコピーします。",
-  "configuration.remoteName.description": "リポジトリ URL のコピーに使用する Git リモート名です。"
+  "configuration.remoteName.description": "リポジトリ URL のコピーに使用する Git リモート名です。",
+  "configuration.copyTemplates.markdownDescription": "**パスまたはリポジトリ URL をコピー…** に表示するカスタム項目です。各項目には `name` と `template` が必要です。使用できる変数: `${absolutePath}`、`${fileName}`、`${path}`、`${workspacePath}`、`${repositoryPath}`、`${repoUrl}`、`${commit}`、`${line}`、`${endLine}`。`${path}` はリポジトリ内ではリポジトリ相対、それ以外ではワークスペース相対になります。必要な Git・ワークスペース・エディター行情報を取得できないテンプレートは表示されません。"
 }

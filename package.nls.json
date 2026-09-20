@@ -13,5 +13,6 @@
   "command.copyRelativePathsJson": "Copy Relative Paths as JSON",
   "command.copyRelativePathsMarkdown": "Copy Relative Paths as Markdown List",
   "configuration.remoteUrlFormat.markdownDescription": "Format used by **Copy Repository URL**. `https` converts common SSH remotes to browser-friendly HTTPS URLs; `preserve` copies the Git remote exactly as configured.",
-  "configuration.remoteName.description": "Git remote name used by Copy Repository URL."
+  "configuration.remoteName.description": "Git remote name used by Copy Repository URL.",
+  "configuration.copyTemplates.markdownDescription": "Custom entries shown in **Copy Path or Repository URL…**. Each entry requires `name` and `template`. Supported variables: `${absolutePath}`, `${fileName}`, `${path}`, `${workspacePath}`, `${repositoryPath}`, `${repoUrl}`, `${commit}`, `${line}`, and `${endLine}`. `${path}` is repository-relative when available, otherwise workspace-relative. Templates that need unavailable Git, workspace, or editor-line information are hidden."
 }

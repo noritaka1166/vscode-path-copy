@@ -13,5 +13,6 @@
   "command.copyRelativePathsJson": "상대 경로를 JSON으로 복사",
   "command.copyRelativePathsMarkdown": "상대 경로를 Markdown 목록으로 복사",
   "configuration.remoteUrlFormat.markdownDescription": "**리포지토리 URL 복사**에 사용할 형식입니다. `https`는 일반적인 SSH 원격을 브라우저용 HTTPS URL로 변환하고, `preserve`는 구성된 Git 원격을 그대로 복사합니다.",
-  "configuration.remoteName.description": "리포지토리 URL 복사에 사용할 Git 원격 이름입니다."
+  "configuration.remoteName.description": "리포지토리 URL 복사에 사용할 Git 원격 이름입니다.",
+  "configuration.copyTemplates.markdownDescription": "**경로 또는 리포지토리 URL 복사…**에 표시할 사용자 지정 항목입니다. 각 항목에는 `name`과 `template`이 필요합니다. 지원 변수: `${absolutePath}`, `${fileName}`, `${path}`, `${workspacePath}`, `${repositoryPath}`, `${repoUrl}`, `${commit}`, `${line}`, `${endLine}`. `${path}`는 리포지토리가 있으면 리포지토리 기준, 없으면 작업 영역 기준입니다. 필요한 Git, 작업 영역 또는 편집기 줄 정보를 얻을 수 없는 템플릿은 숨겨집니다."
 }

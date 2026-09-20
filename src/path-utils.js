@@ -73,6 +73,16 @@ function toPathList(relativePaths, format) {
   return relativePaths.join('\n');
 }
 
+function templatePlaceholders(template) {
+  return [...new Set([...template.matchAll(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g)].map((match) => match[1]))];
+}
+
+function renderTemplate(template, variables) {
+  return template.replace(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g, (placeholder, name) => (
+    Object.hasOwn(variables, name) ? String(variables[name]) : placeholder
+  ));
+}
+
 function encodePathSegment(segment) {
   return encodeURIComponent(segment).replace(/[!'()*]/g, (character) => (
     `%${character.charCodeAt(0).toString(16).toUpperCase()}`
@@ -88,5 +98,7 @@ module.exports = {
   toBrowserUrl,
   toMarkdownLink,
   toPermanentGitUrl,
-  toPathList
+  toPathList,
+  templatePlaceholders,
+  renderTemplate
 };

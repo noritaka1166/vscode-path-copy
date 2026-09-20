@@ -13,5 +13,6 @@
   "command.copyRelativePathsJson": "Copiar rutas relativas como JSON",
   "command.copyRelativePathsMarkdown": "Copiar rutas relativas como lista Markdown",
   "configuration.remoteUrlFormat.markdownDescription": "Formato usado por **Copiar URL del repositorio**. `https` convierte remotos SSH comunes en URL HTTPS adecuadas para el navegador; `preserve` copia el remoto Git tal como está configurado.",
-  "configuration.remoteName.description": "Nombre del remoto Git usado para copiar la URL del repositorio."
+  "configuration.remoteName.description": "Nombre del remoto Git usado para copiar la URL del repositorio.",
+  "configuration.copyTemplates.markdownDescription": "Entradas personalizadas mostradas en **Copiar ruta o URL del repositorio…**. Cada entrada requiere `name` y `template`. Variables admitidas: `${absolutePath}`, `${fileName}`, `${path}`, `${workspacePath}`, `${repositoryPath}`, `${repoUrl}`, `${commit}`, `${line}` y `${endLine}`. `${path}` es relativo al repositorio cuando está disponible; de lo contrario, al área de trabajo. Las plantillas que requieren información de Git, área de trabajo o líneas no disponible se ocultan."
 }

@@ -149,6 +149,27 @@
           "type": "string",
           "default": "origin",
           "description": "%configuration.remoteName.description%"
+        },
+        "pathCopy.copyTemplates": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "template"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string"
+              }
+            }
+          },
+          "markdownDescription": "%configuration.copyTemplates.markdownDescription%"
         }
       }
     }

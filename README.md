@@ -61,6 +61,23 @@ To use a remote other than `origin`:
 }
 ```
 
+## Custom copy templates
+
+Add `pathCopy.copyTemplates` to your settings to show your own entries in the copy picker. For example, this creates a GitHub permalink using the current commit and cursor line:
+
+```json
+{
+  "pathCopy.copyTemplates": [
+    {
+      "name": "GitHub permalink",
+      "template": "${repoUrl}/blob/${commit}/${path}#L${line}"
+    }
+  ]
+}
+```
+
+Supported variables are `${absolutePath}`, `${fileName}`, `${path}`, `${workspacePath}`, `${repositoryPath}`, `${repoUrl}`, `${commit}`, `${line}`, and `${endLine}`. `${path}` is repository-relative when Git is available, otherwise workspace-relative. `${line}` is the cursor or first selected line, and `${endLine}` is available only for a multi-line editor selection. Templates that need unavailable information are hidden; unknown variables remain unchanged.
+
 ## Languages
 
 Path Copy follows your VS Code display language. English is the default, with Japanese, Simplified Chinese, Korean, French, German, Spanish, and Brazilian Portuguese included.

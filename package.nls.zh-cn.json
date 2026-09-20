@@ -13,5 +13,6 @@
   "command.copyRelativePathsJson": "将相对路径复制为 JSON",
   "command.copyRelativePathsMarkdown": "将相对路径复制为 Markdown 列表",
   "configuration.remoteUrlFormat.markdownDescription": "**复制仓库 URL** 使用的格式。`https` 会将常见 SSH 远程地址转换为适合浏览器的 HTTPS URL；`preserve` 会按 Git 配置原样复制远程地址。",
-  "configuration.remoteName.description": "用于复制仓库 URL 的 Git 远程名称。"
+  "configuration.remoteName.description": "用于复制仓库 URL 的 Git 远程名称。",
+  "configuration.copyTemplates.markdownDescription": "显示在 **复制路径或仓库 URL…** 中的自定义项目。每个项目都需要 `name` 和 `template`。支持的变量：`${absolutePath}`、`${fileName}`、`${path}`、`${workspacePath}`、`${repositoryPath}`、`${repoUrl}`、`${commit}`、`${line}` 和 `${endLine}`。`${path}` 在有仓库时为相对于仓库的路径，否则为相对于工作区的路径。无法获取所需 Git、工作区或编辑器行信息的模板将被隐藏。"
 }

@@ -7,11 +7,24 @@ const {
   toBrowserUrl,
   toMarkdownLink,
   toPermanentGitUrl,
-  toPathList
+  toPathList,
+  templatePlaceholders,
+  renderTemplate
 } = require('./path-utils');
 
 const execFileAsync = promisify(execFile);
 const t = vscode.l10n.t;
+const TEMPLATE_VARIABLES = new Set([
+  'absolutePath',
+  'fileName',
+  'path',
+  'workspacePath',
+  'repositoryPath',
+  'repoUrl',
+  'commit',
+  'line',
+  'endLine'
+]);
 
 function activate(context) {
   const register = (command, handler, resourceResolver = resolveResource) => {
@@ -158,6 +171,13 @@ async function createCopyItems(resource) {
       toMarkdownLink(relativePath(markdownRoot, resource.fsPath))
     ));
   }
+  const templateItems = await createTemplateItems(resource, workspaceFolder, repositoryRoot);
+  if (templateItems.length) {
+    items.push(
+      { label: t('Custom Templates'), kind: vscode.QuickPickItemKind.Separator },
+      ...templateItems
+    );
+  }
   if (!repositoryRoot) {
     return items;
   }
@@ -175,6 +195,76 @@ async function createCopyItems(resource) {
     items.push(pickerItem(t('Permanent Git Link'), permanentLink));
   }
   return items;
+}
+
+async function createTemplateItems(resource, workspaceFolder, repositoryRoot) {
+  const templates = configuredTemplates();
+  if (!templates.length) {
+    return [];
+  }
+  const requiredVariables = new Set(templates.flatMap((template) => templatePlaceholders(template.template)));
+  const variables = await templateVariables(resource, workspaceFolder, repositoryRoot, requiredVariables);
+  return templates
+    .filter((template) => canRenderTemplate(template.template, variables))
+    .map((template) => pickerItem(template.name, renderTemplate(template.template, variables)));
+}
+
+function configuredTemplates() {
+  const templates = vscode.workspace.getConfiguration('pathCopy').get('copyTemplates', []);
+  if (!Array.isArray(templates)) {
+    return [];
+  }
+  return templates.filter((template) => (
+    template
+    && typeof template.name === 'string'
+    && template.name.trim()
+    && typeof template.template === 'string'
+  ));
+}
+
+async function templateVariables(resource, workspaceFolder, repositoryRoot, requiredVariables) {
+  const workspacePath = workspaceFolder
+    ? relativePath(workspaceFolder.uri.fsPath, resource.fsPath)
+    : undefined;
+  const repositoryPath = repositoryRoot
+    ? relativePath(repositoryRoot, resource.fsPath)
+    : undefined;
+  const lineRange = selectedLineRange(resource);
+  const variables = {
+    absolutePath: resource.fsPath,
+    fileName: path.basename(resource.fsPath),
+    path: repositoryPath || workspacePath,
+    workspacePath,
+    repositoryPath,
+    line: lineRange?.startLine,
+    endLine: lineRange?.endLine
+  };
+  if (!repositoryRoot) {
+    return variables;
+  }
+  const config = vscode.workspace.getConfiguration('pathCopy');
+  if (requiredVariables.has('repoUrl')) {
+    try {
+      const remote = await git(repositoryRoot, ['remote', 'get-url', config.get('remoteName', 'origin')]);
+      variables.repoUrl = toBrowserUrl(remote);
+    } catch {
+      // Templates that require the remote URL remain hidden when it cannot be resolved.
+    }
+  }
+  if (requiredVariables.has('commit')) {
+    try {
+      variables.commit = await git(repositoryRoot, ['rev-parse', 'HEAD']);
+    } catch {
+      // Templates that require the commit remain hidden when it cannot be resolved.
+    }
+  }
+  return variables;
+}
+
+function canRenderTemplate(template, variables) {
+  return templatePlaceholders(template).every((placeholder) => (
+    !TEMPLATE_VARIABLES.has(placeholder) || variables[placeholder] !== undefined
+  ));
 }
 
 function pickerItem(label, value) {

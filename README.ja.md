@@ -61,6 +61,23 @@ Git に設定されたリモート URL をそのままコピーするには、�
 }
 ```
 
+## カスタムコピー テンプレート
+
+設定に `pathCopy.copyTemplates` を追加すると、コピー選択ダイアログに独自の項目を表示できます。次の例では、現在のコミットとカーソル行を使う GitHub の恒久リンクを追加します。
+
+```json
+{
+  "pathCopy.copyTemplates": [
+    {
+      "name": "GitHub permalink",
+      "template": "${repoUrl}/blob/${commit}/${path}#L${line}"
+    }
+  ]
+}
+```
+
+使用できる変数は `${absolutePath}`、`${fileName}`、`${path}`、`${workspacePath}`、`${repositoryPath}`、`${repoUrl}`、`${commit}`、`${line}`、`${endLine}` です。`${path}` は Git が使える場合はリポジトリ相対、それ以外ではワークスペース相対になります。`${line}` はカーソル行または選択範囲の先頭行、`${endLine}` は複数行を選択した場合に使えます。必要な情報を取得できないテンプレートは表示されず、未対応の変数はそのまま残ります。
+
 ## 対応言語
 
 VS Code の表示言語に自動追従します。既定の英語に加え、日本語・中国語（簡体字）・韓国語・フランス語・ドイツ語・スペイン語・ポルトガル語（ブラジル）を収録しています。
