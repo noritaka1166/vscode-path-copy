@@ -20,5 +20,9 @@
   "Open the selected file in the active editor first.": "Primeiro abra o arquivo selecionado no editor ativo.",
   "The selected file does not belong to an open workspace folder.": "O arquivo selecionado não pertence a uma pasta de espaço de trabalho aberta.",
   "The selected file does not belong to an open workspace folder or Git repository.": "O arquivo selecionado não pertence a uma pasta de espaço de trabalho aberta nem a um repositório Git.",
-  "No Git repository was found for the selected item.": "Nenhum repositório Git foi encontrado para o item selecionado."
+  "No Git repository was found for the selected item.": "Nenhum repositório Git foi encontrado para o item selecionado.",
+  "Git could not be started. Check that Git is installed and available in PATH.": "Não foi possível iniciar o Git. Verifique se está instalado e disponível no PATH.",
+  "Permission denied while running Git for the selected item.": "Permissão negada ao executar o Git para o item selecionado.",
+  "Git remote \"{0}\" is not configured.": "O remoto Git \"{0}\" não está configurado.",
+  "Git command failed: {0}": "Falha ao executar o comando Git: {0}"
 }

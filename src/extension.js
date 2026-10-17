@@ -433,9 +433,33 @@ async function git(cwd, args) {
   try {
     const { stdout } = await execFileAsync('git', ['-C', cwd, ...args], { encoding: 'utf8' });
     return stdout.trim();
-  } catch {
-    throw new Error(t('No Git repository was found for the selected item.'));
+  } catch (error) {
+    throw new Error(gitErrorMessage(error, args));
   }
+}
+
+function gitErrorMessage(error, args) {
+  const code = error?.code;
+  const stderr = typeof error?.stderr === 'string' ? error.stderr.trim() : '';
+  const details = stderr || (error instanceof Error ? error.message : String(error));
+
+  if (code === 'ENOENT') {
+    return t('Git could not be started. Check that Git is installed and available in PATH.');
+  }
+  if (
+    code === 'EACCES'
+    || code === 'EPERM'
+    || /permission denied|operation not permitted|access is denied/i.test(details)
+  ) {
+    return t('Permission denied while running Git for the selected item.');
+  }
+  if (/not a git repository/i.test(details)) {
+    return t('No Git repository was found for the selected item.');
+  }
+  if (args[0] === 'remote' && args[1] === 'get-url' && (code === 2 || code === '2')) {
+    return t('Git remote "{0}" is not configured.', args[2]);
+  }
+  return t('Git command failed: {0}', details.slice(0, 500));
 }
 
 async function copy(label, value) {

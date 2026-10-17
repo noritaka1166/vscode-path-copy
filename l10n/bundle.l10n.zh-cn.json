@@ -20,5 +20,9 @@
   "Open the selected file in the active editor first.": "请先在活动编辑器中打开所选文件。",
   "The selected file does not belong to an open workspace folder.": "所选文件不属于已打开的工作区文件夹。",
   "The selected file does not belong to an open workspace folder or Git repository.": "所选文件不属于已打开的工作区文件夹或 Git 仓库。",
-  "No Git repository was found for the selected item.": "未找到所选项目的 Git 仓库。"
+  "No Git repository was found for the selected item.": "未找到所选项目的 Git 仓库。",
+  "Git could not be started. Check that Git is installed and available in PATH.": "无法启动 Git。请确认 Git 已安装且可在 PATH 中使用。",
+  "Permission denied while running Git for the selected item.": "没有权限为所选项目运行 Git。",
+  "Git remote \"{0}\" is not configured.": "Git 远程仓库“{0}”未配置。",
+  "Git command failed: {0}": "Git 命令执行失败：{0}"
 }

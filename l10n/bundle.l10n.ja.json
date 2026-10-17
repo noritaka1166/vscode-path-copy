@@ -20,5 +20,9 @@
   "Open the selected file in the active editor first.": "最初に選択したファイルをアクティブエディターで開いてください。",
   "The selected file does not belong to an open workspace folder.": "選択したファイルは開いているワークスペースフォルダーに含まれていません。",
   "The selected file does not belong to an open workspace folder or Git repository.": "選択したファイルは、開いているワークスペースフォルダーまたは Git リポジトリに含まれていません。",
-  "No Git repository was found for the selected item.": "選択した項目の Git リポジトリが見つかりません。"
+  "No Git repository was found for the selected item.": "選択した項目の Git リポジトリが見つかりません。",
+  "Git could not be started. Check that Git is installed and available in PATH.": "Git を起動できません。Git がインストールされ、PATH から利用できることを確認してください。",
+  "Permission denied while running Git for the selected item.": "選択した項目で Git を実行する権限がありません。",
+  "Git remote \"{0}\" is not configured.": "Git リモート「{0}」が設定されていません。",
+  "Git command failed: {0}": "Git コマンドに失敗しました: {0}"
 }

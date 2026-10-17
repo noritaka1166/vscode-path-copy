@@ -20,5 +20,9 @@
   "Open the selected file in the active editor first.": "먼저 선택한 파일을 활성 편집기에서 여세요.",
   "The selected file does not belong to an open workspace folder.": "선택한 파일이 열려 있는 작업 영역 폴더에 속하지 않습니다.",
   "The selected file does not belong to an open workspace folder or Git repository.": "선택한 파일이 열려 있는 작업 영역 폴더나 Git 리포지토리에 속하지 않습니다.",
-  "No Git repository was found for the selected item.": "선택한 항목의 Git 리포지토리를 찾을 수 없습니다."
+  "No Git repository was found for the selected item.": "선택한 항목의 Git 리포지토리를 찾을 수 없습니다.",
+  "Git could not be started. Check that Git is installed and available in PATH.": "Git을 시작할 수 없습니다. Git이 설치되어 있고 PATH에서 사용할 수 있는지 확인하세요.",
+  "Permission denied while running Git for the selected item.": "선택한 항목에서 Git을 실행할 권한이 없습니다.",
+  "Git remote \"{0}\" is not configured.": "Git 원격 저장소 \"{0}\"이(가) 설정되지 않았습니다.",
+  "Git command failed: {0}": "Git 명령 실행 실패: {0}"
 }
