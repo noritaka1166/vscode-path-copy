@@ -51,11 +51,14 @@ function toPermanentGitUrl(remoteUrl, revision, repositoryPath, options = {}) {
   const separator = isGitLab ? '/-/' : '/';
   url.pathname = `${stripTrailingSlashes(url.pathname)}${separator}${view}/${encodePathSegment(revision)}${filePath}`;
   if (!options.isDirectory && options.startLine) {
-    const lineRange = options.endLine && options.endLine !== options.startLine
-      ? isGitLab
-        ? `L${options.startLine}-${options.endLine}`
-        : `L${options.startLine}-L${options.endLine}`
-      : `L${options.startLine}`;
+    let lineRange = `L${options.startLine}`;
+    if (options.endLine && options.endLine !== options.startLine) {
+      if (isGitLab) {
+        lineRange = `L${options.startLine}-${options.endLine}`;
+      } else {
+        lineRange = `L${options.startLine}-L${options.endLine}`;
+      }
+    }
     url.hash = lineRange;
   }
   return url.toString();
