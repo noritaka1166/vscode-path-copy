@@ -70,7 +70,7 @@ function toPathList(relativePaths, format) {
   }
   if (format === 'markdown') {
     return relativePaths
-      .map((relativePath) => `- \`${relativePath.replaceAll('`', String.raw`\``)}\``)
+      .map((relativePath) => `- \`${relativePath.replaceAll('`', '\\`')}\``)
       .join('\n');
   }
   return relativePaths.join('\n');
