@@ -66,16 +66,16 @@ test('toCodePosition creates a one-based path, line, and column reference', () =
 
 test('template helpers replace supported variables and preserve unknown placeholders', () => {
   assert.deepEqual(
-    templatePlaceholders('${repoUrl}/blob/${commit}/${path}#L${line}/${path}'),
+    templatePlaceholders(`\${repoUrl}/blob/\${commit}/\${path}#L\${line}/\${path}`),
     ['repoUrl', 'commit', 'path', 'line']
   );
   assert.equal(
-    renderTemplate('${repoUrl}/blob/${commit}/${path}#L${line}/${unknown}', {
+    renderTemplate(`\${repoUrl}/blob/\${commit}/\${path}#L\${line}/\${unknown}`, {
       repoUrl: 'https://github.com/octo/example',
       commit: 'a1b2c3d',
       path: 'src/extension.js',
       line: 10
     }),
-    'https://github.com/octo/example/blob/a1b2c3d/src/extension.js#L10/${unknown}'
+    `https://github.com/octo/example/blob/a1b2c3d/src/extension.js#L10/\${unknown}`
   );
 });
