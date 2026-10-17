@@ -185,9 +185,13 @@
   "scripts": {
     "test": "node --test test/*.test.js",
     "check": "node --check src/extension.js && node --check src/path-utils.js",
-    "vscode:prepublish": "npm run check && npm test"
+    "vscode:prepublish": "npm run check && npm test",
+    "lint": "biome lint src test",
+    "format": "biome format --write src test",
+    "check:biome": "biome check src test"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@vscode/vsce": "^4.0.0"
   }
 }
