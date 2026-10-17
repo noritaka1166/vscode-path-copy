@@ -49,7 +49,7 @@ function toPermanentGitUrl(remoteUrl, revision, repositoryPath, options = {}) {
     ? ''
     : `/${repositoryPath.split('/').map(encodePathSegment).join('/')}`;
   const separator = isGitLab ? '/-/' : '/';
-  url.pathname = `${url.pathname.replace(/\/+$/, '')}${separator}${view}/${encodePathSegment(revision)}${filePath}`;
+  url.pathname = `${stripTrailingSlashes(url.pathname)}${separator}${view}/${encodePathSegment(revision)}${filePath}`;
   if (!options.isDirectory && options.startLine) {
     const lineRange = options.endLine && options.endLine !== options.startLine
       ? isGitLab
@@ -95,6 +95,14 @@ function encodePathSegment(segment) {
 
 function stripGitSuffix(value) {
   return value.replace(/\.git$/i, '');
+}
+
+function stripTrailingSlashes(value) {
+  let end = value.length;
+  while (end > 0 && value[end - 1] === '/') {
+    end -= 1;
+  }
+  return value.slice(0, end);
 }
 
 module.exports = {
