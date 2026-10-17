@@ -13,9 +13,7 @@ function toBrowserUrl(remoteUrl) {
   const value = remoteUrl.trim();
 
   // git@github.com:owner/repository.git
-  const scpStyle = !value.includes('://')
-    ? value.match(/^(?:[^@]+@)?([^:/]+):(.+)$/)
-    : undefined;
+  const scpStyle = !value.includes('://') ? value.match(/^(?:[^@]+@)?([^:/]+):(.+)$/) : undefined;
   if (scpStyle) {
     return `https://${scpStyle[1]}/${stripGitSuffix(scpStyle[2])}`;
   }
@@ -34,10 +32,7 @@ function toBrowserUrl(remoteUrl) {
 
 function toMarkdownLink(relativeFilePath) {
   const label = relativeFilePath.replace(/([\\[\]])/g, String.raw`\$1`);
-  const destination = relativeFilePath
-    .split('/')
-    .map(encodePathSegment)
-    .join('/');
+  const destination = relativeFilePath.split('/').map(encodePathSegment).join('/');
   return `[${label}](${destination})`;
 }
 
@@ -45,9 +40,8 @@ function toPermanentGitUrl(remoteUrl, revision, repositoryPath, options = {}) {
   const url = new URL(toBrowserUrl(remoteUrl));
   const isGitLab = /(^|[.-])gitlab(?:[.-]|$)/i.test(url.hostname);
   const view = options.isDirectory ? 'tree' : 'blob';
-  const filePath = repositoryPath === '.'
-    ? ''
-    : `/${repositoryPath.split('/').map(encodePathSegment).join('/')}`;
+  const filePath =
+    repositoryPath === '.' ? '' : `/${repositoryPath.split('/').map(encodePathSegment).join('/')}`;
   const separator = isGitLab ? '/-/' : '/';
   url.pathname = `${stripTrailingSlashes(url.pathname)}${separator}${view}/${encodePathSegment(revision)}${filePath}`;
   if (!options.isDirectory && options.startLine) {
@@ -81,19 +75,22 @@ function toCodePosition(filePath, line, column) {
 }
 
 function templatePlaceholders(template) {
-  return [...new Set([...template.matchAll(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g)].map((match) => match[1]))];
+  return [
+    ...new Set([...template.matchAll(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g)].map((match) => match[1]))
+  ];
 }
 
 function renderTemplate(template, variables) {
-  return template.replace(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g, (placeholder, name) => (
+  return template.replace(/\$\{([A-Za-z][A-Za-z0-9]*)\}/g, (placeholder, name) =>
     Object.hasOwn(variables, name) ? String(variables[name]) : placeholder
-  ));
+  );
 }
 
 function encodePathSegment(segment) {
-  return encodeURIComponent(segment).replace(/[!'()*]/g, (character) => (
-    `%${character.codePointAt(0).toString(16).toUpperCase()}`
-  ));
+  return encodeURIComponent(segment).replace(
+    /[!'()*]/g,
+    (character) => `%${character.codePointAt(0).toString(16).toUpperCase()}`
+  );
 }
 
 function stripGitSuffix(value) {

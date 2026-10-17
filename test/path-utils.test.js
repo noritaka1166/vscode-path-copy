@@ -17,8 +17,14 @@ test('relativePath returns a slash-separated relative path', () => {
 
 test('toBrowserUrl normalizes common SSH and HTTPS Git remotes', () => {
   assert.equal(toBrowserUrl('git@github.com:octo/example.git'), 'https://github.com/octo/example');
-  assert.equal(toBrowserUrl('ssh://git@gitlab.example.com/team/project.git'), 'https://gitlab.example.com/team/project');
-  assert.equal(toBrowserUrl('https://github.com/octo/example.git'), 'https://github.com/octo/example');
+  assert.equal(
+    toBrowserUrl('ssh://git@gitlab.example.com/team/project.git'),
+    'https://gitlab.example.com/team/project'
+  );
+  assert.equal(
+    toBrowserUrl('https://github.com/octo/example.git'),
+    'https://github.com/octo/example'
+  );
 });
 
 test('toMarkdownLink creates a relative Markdown link and safely encodes special characters', () => {
@@ -38,17 +44,24 @@ test('toPermanentGitUrl creates commit-pinned GitHub and GitLab links with line 
     'https://github.com/octo/example/blob/a1b2c3d/src/extension.js#L10-L12'
   );
   assert.equal(
-    toPermanentGitUrl('ssh://git@gitlab.example.com/team/project.git', 'a1b2c3d', 'src/path utils.js', {
-      startLine: 4,
-      endLine: 7
-    }),
+    toPermanentGitUrl(
+      'ssh://git@gitlab.example.com/team/project.git',
+      'a1b2c3d',
+      'src/path utils.js',
+      {
+        startLine: 4,
+        endLine: 7
+      }
+    ),
     'https://gitlab.example.com/team/project/-/blob/a1b2c3d/src/path%20utils.js#L4-7'
   );
 });
 
 test('toPermanentGitUrl creates a commit-pinned directory link without a line anchor', () => {
   assert.equal(
-    toPermanentGitUrl('https://github.com/octo/example.git', 'a1b2c3d', 'docs', { isDirectory: true }),
+    toPermanentGitUrl('https://github.com/octo/example.git', 'a1b2c3d', 'docs', {
+      isDirectory: true
+    }),
     'https://github.com/octo/example/tree/a1b2c3d/docs'
   );
 });

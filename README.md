@@ -64,6 +64,8 @@ To use a remote other than `origin`:
 }
 ```
 
+If a Git operation fails, Path Copy reports whether Git could not start, access was denied, the selected item is outside a repository, or the configured remote is missing.
+
 ## Custom copy templates
 
 Add `pathCopy.copyTemplates` to your settings to show your own entries in the copy picker. For example, this creates a GitHub permalink using the current commit and cursor line:

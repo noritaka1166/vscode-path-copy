@@ -29,27 +29,33 @@ const TEMPLATE_VARIABLES = new Set([
 
 function activate(context) {
   const register = (command, handler, resourceResolver = resolveResource) => {
-    context.subscriptions.push(vscode.commands.registerCommand(command, async (...args) => {
-      try {
-        await handler(resourceResolver(args));
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        vscode.window.showErrorMessage(`Path Copy: ${message}`);
-      }
-    }));
+    context.subscriptions.push(
+      vscode.commands.registerCommand(command, async (...args) => {
+        try {
+          await handler(resourceResolver(args));
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          vscode.window.showErrorMessage(`Path Copy: ${message}`);
+        }
+      })
+    );
   };
 
   register('pathCopy.copyAbsolutePath', async (resource) => {
     await copy(t('Absolute Path'), resource.fsPath);
   });
 
-  register('pathCopy.showCopyPicker', async (resources) => {
-    if (resources.length > 1) {
-      await showBatchCopyPicker(resources);
-      return;
-    }
-    await showCopyPicker(resources[0]);
-  }, resolveResources);
+  register(
+    'pathCopy.showCopyPicker',
+    async (resources) => {
+      if (resources.length > 1) {
+        await showBatchCopyPicker(resources);
+        return;
+      }
+      await showCopyPicker(resources[0]);
+    },
+    resolveResources
+  );
 
   register('pathCopy.copyFileName', async (resource) => {
     await copy(t('File Name'), path.basename(resource.fsPath));
@@ -68,7 +74,10 @@ function activate(context) {
     if (!folder) {
       throw new Error(t('The selected file does not belong to an open workspace folder.'));
     }
-    await copy(t('Path Relative to Content Root'), relativePath(folder.uri.fsPath, resource.fsPath));
+    await copy(
+      t('Path Relative to Content Root'),
+      relativePath(folder.uri.fsPath, resource.fsPath)
+    );
   });
 
   register('pathCopy.copyRepositoryRelativePath', async (resource) => {
@@ -86,9 +95,8 @@ function activate(context) {
     const config = vscode.workspace.getConfiguration('pathCopy');
     const remoteName = config.get('remoteName', 'origin');
     const remote = await git(root, ['remote', 'get-url', remoteName]);
-    const url = config.get('remoteUrlFormat', 'https') === 'preserve'
-      ? remote
-      : toBrowserUrl(remote);
+    const url =
+      config.get('remoteUrlFormat', 'https') === 'preserve' ? remote : toBrowserUrl(remote);
     await copy(t('Repository URL'), url);
   });
 
@@ -97,20 +105,35 @@ function activate(context) {
     await copy(t('Permanent Git Link'), await permanentGitLink(resource, root));
   });
 
-  register('pathCopy.copyRelativePathsLines', async (resources) => {
-    await copy(t('Relative Paths (Lines)'), toPathList(workspaceRelativePaths(resources), 'lines'));
-  }, resolveResources);
+  register(
+    'pathCopy.copyRelativePathsLines',
+    async (resources) => {
+      await copy(
+        t('Relative Paths (Lines)'),
+        toPathList(workspaceRelativePaths(resources), 'lines')
+      );
+    },
+    resolveResources
+  );
 
-  register('pathCopy.copyRelativePathsJson', async (resources) => {
-    await copy(t('Relative Paths (JSON)'), toPathList(workspaceRelativePaths(resources), 'json'));
-  }, resolveResources);
+  register(
+    'pathCopy.copyRelativePathsJson',
+    async (resources) => {
+      await copy(t('Relative Paths (JSON)'), toPathList(workspaceRelativePaths(resources), 'json'));
+    },
+    resolveResources
+  );
 
-  register('pathCopy.copyRelativePathsMarkdown', async (resources) => {
-    await copy(
-      t('Relative Paths (Markdown List)'),
-      toPathList(workspaceRelativePaths(resources), 'markdown')
-    );
-  }, resolveResources);
+  register(
+    'pathCopy.copyRelativePathsMarkdown',
+    async (resources) => {
+      await copy(
+        t('Relative Paths (Markdown List)'),
+        toPathList(workspaceRelativePaths(resources), 'markdown')
+      );
+    },
+    resolveResources
+  );
 }
 
 async function showCopyPicker(resource) {
@@ -166,10 +189,12 @@ async function createCopyItems(resource) {
   ];
   const workspaceFolder = vscode.workspace.getWorkspaceFolder(resource);
   if (workspaceFolder) {
-    items.push(pickerItem(
-      t('Path Relative to Content Root'),
-      relativePath(workspaceFolder.uri.fsPath, resource.fsPath)
-    ));
+    items.push(
+      pickerItem(
+        t('Path Relative to Content Root'),
+        relativePath(workspaceFolder.uri.fsPath, resource.fsPath)
+      )
+    );
   }
 
   const repositoryRoot = await findGitRoot(resource);
@@ -182,10 +207,9 @@ async function createCopyItems(resource) {
   }
   const markdownRoot = repositoryRoot || workspaceFolder?.uri.fsPath;
   if (markdownRoot) {
-    items.push(pickerItem(
-      t('Markdown Link'),
-      toMarkdownLink(relativePath(markdownRoot, resource.fsPath))
-    ));
+    items.push(
+      pickerItem(t('Markdown Link'), toMarkdownLink(relativePath(markdownRoot, resource.fsPath)))
+    );
   }
   const templateItems = await createTemplateItems(resource, workspaceFolder, repositoryRoot);
   if (templateItems.length) {
@@ -198,7 +222,10 @@ async function createCopyItems(resource) {
     return items;
   }
   items.push(
-    pickerItem(t('Path Relative to Repository Root'), relativePath(repositoryRoot, resource.fsPath)),
+    pickerItem(
+      t('Path Relative to Repository Root'),
+      relativePath(repositoryRoot, resource.fsPath)
+    ),
     { label: t('Repository'), kind: vscode.QuickPickItemKind.Separator }
   );
 
@@ -218,8 +245,15 @@ async function createTemplateItems(resource, workspaceFolder, repositoryRoot) {
   if (!templates.length) {
     return [];
   }
-  const requiredVariables = new Set(templates.flatMap((template) => templatePlaceholders(template.template)));
-  const variables = await templateVariables(resource, workspaceFolder, repositoryRoot, requiredVariables);
+  const requiredVariables = new Set(
+    templates.flatMap((template) => templatePlaceholders(template.template))
+  );
+  const variables = await templateVariables(
+    resource,
+    workspaceFolder,
+    repositoryRoot,
+    requiredVariables
+  );
   return templates
     .filter((template) => canRenderTemplate(template.template, variables))
     .map((template) => pickerItem(template.name, renderTemplate(template.template, variables)));
@@ -230,21 +264,20 @@ function configuredTemplates() {
   if (!Array.isArray(templates)) {
     return [];
   }
-  return templates.filter((template) => (
-    template
-    && typeof template.name === 'string'
-    && template.name.trim()
-    && typeof template.template === 'string'
-  ));
+  return templates.filter(
+    (template) =>
+      template &&
+      typeof template.name === 'string' &&
+      template.name.trim() &&
+      typeof template.template === 'string'
+  );
 }
 
 async function templateVariables(resource, workspaceFolder, repositoryRoot, requiredVariables) {
   const workspacePath = workspaceFolder
     ? relativePath(workspaceFolder.uri.fsPath, resource.fsPath)
     : undefined;
-  const repositoryPath = repositoryRoot
-    ? relativePath(repositoryRoot, resource.fsPath)
-    : undefined;
+  const repositoryPath = repositoryRoot ? relativePath(repositoryRoot, resource.fsPath) : undefined;
   const lineRange = selectedLineRange(resource);
   const variables = {
     absolutePath: resource.fsPath,
@@ -261,7 +294,11 @@ async function templateVariables(resource, workspaceFolder, repositoryRoot, requ
   const config = vscode.workspace.getConfiguration('pathCopy');
   if (requiredVariables.has('repoUrl')) {
     try {
-      const remote = await git(repositoryRoot, ['remote', 'get-url', config.get('remoteName', 'origin')]);
+      const remote = await git(repositoryRoot, [
+        'remote',
+        'get-url',
+        config.get('remoteName', 'origin')
+      ]);
       variables.repoUrl = toBrowserUrl(remote);
     } catch {
       // Templates that require the remote URL remain hidden when it cannot be resolved.
@@ -278,9 +315,9 @@ async function templateVariables(resource, workspaceFolder, repositoryRoot, requ
 }
 
 function canRenderTemplate(template, variables) {
-  return templatePlaceholders(template).every((placeholder) => (
-    !TEMPLATE_VARIABLES.has(placeholder) || variables[placeholder] !== undefined
-  ));
+  return templatePlaceholders(template).every(
+    (placeholder) => !TEMPLATE_VARIABLES.has(placeholder) || variables[placeholder] !== undefined
+  );
 }
 
 function pickerItem(label, value) {
@@ -367,7 +404,9 @@ async function markdownLinkRoot(resource) {
   if (workspaceFolder) {
     return workspaceFolder.uri.fsPath;
   }
-  throw new Error(t('The selected file does not belong to an open workspace folder or Git repository.'));
+  throw new Error(
+    t('The selected file does not belong to an open workspace folder or Git repository.')
+  );
 }
 
 async function findRepositoryUrl(root) {
@@ -402,9 +441,7 @@ async function permanentGitLink(resource, root) {
 
 async function workingDirectoryFor(resource) {
   const stat = await vscode.workspace.fs.stat(resource);
-  return isDirectory(stat.type)
-    ? resource.fsPath
-    : path.dirname(resource.fsPath);
+  return isDirectory(stat.type) ? resource.fsPath : path.dirname(resource.fsPath);
 }
 
 function isDirectory(fileType) {
@@ -447,9 +484,9 @@ function gitErrorMessage(error, args) {
     return t('Git could not be started. Check that Git is installed and available in PATH.');
   }
   if (
-    code === 'EACCES'
-    || code === 'EPERM'
-    || /permission denied|operation not permitted|access is denied/i.test(details)
+    code === 'EACCES' ||
+    code === 'EPERM' ||
+    /permission denied|operation not permitted|access is denied/i.test(details)
   ) {
     return t('Permission denied while running Git for the selected item.');
   }
