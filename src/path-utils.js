@@ -89,7 +89,7 @@ function renderTemplate(template, variables) {
 
 function encodePathSegment(segment) {
   return encodeURIComponent(segment).replace(/[!'()*]/g, (character) => (
-    `%${character.charCodeAt(0).toString(16).toUpperCase()}`
+    `%${character.codePointAt(0).toString(16).toUpperCase()}`
   ));
 }
 
