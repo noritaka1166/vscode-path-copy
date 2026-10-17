@@ -33,7 +33,7 @@ function toBrowserUrl(remoteUrl) {
 }
 
 function toMarkdownLink(relativeFilePath) {
-  const label = relativeFilePath.replace(/([\\[\]])/g, '\\$1');
+  const label = relativeFilePath.replace(/([\\[\]])/g, String.raw`\$1`);
   const destination = relativeFilePath
     .split('/')
     .map(encodePathSegment)
@@ -67,7 +67,7 @@ function toPathList(relativePaths, format) {
   }
   if (format === 'markdown') {
     return relativePaths
-      .map((relativePath) => `- \`${relativePath.replace(/`/g, '\\`')}\``)
+      .map((relativePath) => `- \`${relativePath.replace(/`/g, String.raw`\``)}\``)
       .join('\n');
   }
   return relativePaths.join('\n');

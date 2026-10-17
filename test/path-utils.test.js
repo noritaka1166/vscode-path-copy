@@ -25,7 +25,7 @@ test('toMarkdownLink creates a relative Markdown link and safely encodes special
   assert.equal(toMarkdownLink('src/extension.js'), '[src/extension.js](src/extension.js)');
   assert.equal(
     toMarkdownLink('docs/Release [notes] #1 (draft).md'),
-    '[docs/Release \\[notes\\] #1 (draft).md](docs/Release%20%5Bnotes%5D%20%231%20%28draft%29.md)'
+    String.raw`[docs/Release \[notes\] #1 (draft).md](docs/Release%20%5Bnotes%5D%20%231%20%28draft%29.md)`
   );
 });
 
@@ -57,7 +57,13 @@ test('toPathList formats relative paths as lines, JSON, or a Markdown list', () 
   const paths = ['src/extension.js', 'docs/path`notes.md'];
   assert.equal(toPathList(paths, 'lines'), 'src/extension.js\ndocs/path`notes.md');
   assert.equal(toPathList(paths, 'json'), '[\n  "src/extension.js",\n  "docs/path`notes.md"\n]');
-  assert.equal(toPathList(paths, 'markdown'), '- `src/extension.js`\n- `docs/path\\`notes.md`');
+  const backtick = '`';
+  const escapedBacktick = String.raw`\``;
+  const expectedMarkdown = [
+    `- ${backtick}src/extension.js${backtick}`,
+    `- ${backtick}docs/path${escapedBacktick}notes.md${backtick}`
+  ].join('\n');
+  assert.equal(toPathList(paths, 'markdown'), expectedMarkdown);
 });
 
 test('toCodePosition creates a one-based path, line, and column reference', () => {
